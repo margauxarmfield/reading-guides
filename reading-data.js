@@ -14,10 +14,10 @@ window.READING_DATA = [
       },
       {
         slug: "open-water", title: "Open Water", author: "Caleb Azumah Nelson",
-        pages: 160, rating: 4.10, genre: "fiction", format: "audio",
-        blurb: "Short, lyrical, and emotional — perfect for listening and reflecting.",
+        pages: 160, rating: 4.10, genre: "fiction", format: "audio", shared: true,
+        blurb: "Our shared read — short, lyrical, and emotional. A headphones-on listen to move through together.",
         quote: "A slim, headphones-on read. Listen after dark; it moves like a song you already half-know.",
-        cite: "Editor's note · On listening"
+        cite: "Reading this one with Andres · On listening"
       }
     ]
   },
@@ -64,10 +64,10 @@ window.READING_DATA = [
     books: [
       {
         slug: "lonesome-dove", title: "Lonesome Dove", author: "Larry McMurtry",
-        pages: 843, rating: 4.59, genre: "fiction", format: "physical",
-        blurb: "Epic, immersive story perfect for a summer deep-dive.",
+        pages: 843, rating: 4.59, genre: "fiction", format: "physical", shared: true,
+        blurb: "Our shared read — expansive and character-driven. Let's take the trail together.",
         quote: "Eight hundred pages of big sky and bigger hearts. The summer book against which all other summer books are measured.",
-        cite: "Editor's note · On the long trail"
+        cite: "Reading this one with Andres · On the long trail"
       },
       {
         slug: "beyond-words", title: "Beyond Words", author: "Carl Safina",
@@ -121,10 +121,10 @@ window.READING_DATA = [
     books: [
       {
         slug: "wives-under-sea", title: "Our Wives Under the Sea", author: "Julia Armfield",
-        pages: 240, rating: 4.00, genre: "fiction", format: "physical",
-        blurb: "Atmospheric, eerie story blending love and the unknown.",
-        quote: "Grief, marriage, and something monstrous in the deep. A perfect October read — cold to the touch.",
-        cite: "Editor's note · On the depths"
+        pages: 240, rating: 4.00, genre: "fiction", format: "physical", shared: true,
+        blurb: "Our shared read — emotional, surreal, and deeply introspective. A love story told from the cold of the deep.",
+        quote: "Grief, marriage, and something monstrous in the deep. A perfect October to move through side by side.",
+        cite: "Reading this one with Andres · On the depths"
       },
       {
         slug: "exodus", title: "Exodus", author: "Leon Uris",
@@ -140,10 +140,10 @@ window.READING_DATA = [
     books: [
       {
         slug: "anthropocene", title: "The Anthropocene Reviewed", author: "John Green",
-        pages: 304, rating: 4.35, genre: "nonfiction", format: "physical",
-        blurb: "Thoughtful essays that blend humor, insight, and reflection.",
+        pages: 304, rating: 4.35, genre: "nonfiction", format: "physical", shared: true,
+        blurb: "Our shared read — reflective essays about modern life and meaning. Read one at a time, together.",
         quote: "Bite-size essays you can read one at a time with coffee. Funny, aching, and surprisingly hopeful.",
-        cite: "Editor's note · On small wonders"
+        cite: "Reading this one with Andres · On small wonders"
       },
       {
         slug: "tender-land", title: "This Tender Land", author: "William Kent Krueger",

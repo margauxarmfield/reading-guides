@@ -93,6 +93,53 @@
     background: #e5e5e5;
     margin: 4px 2px;
   }
+  .filter-bar button[data-filter="shared"] { color: var(--pink-deep); }
+  .filter-bar button[data-filter="shared"].active { background: var(--pink-deep); color: #fff; }
+
+  /* Goodreads links */
+  .title-link, .toc-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(26,26,26,0.28);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .title-link:hover, .toc-link:hover {
+    color: var(--teal-deep);
+    border-bottom-color: var(--teal-deep);
+  }
+  @media print {
+    .title-link, .toc-link { border-bottom: none; color: inherit; }
+  }
+
+  /* Shared read indicators */
+  .shared-ribbon {
+    position: absolute;
+    top: 10px; right: -12px;
+    z-index: 3;
+    background: var(--pink-deep);
+    color: #fff;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 6px 14px 6px 10px;
+    font-weight: 600;
+    transform: rotate(6deg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .toc-heart { color: var(--pink-deep); font-size: 16px; display: inline-block; margin-left: 4px; transform: translateY(-1px); }
+  .inline-heart { color: var(--pink-deep); font-family: 'Instrument Serif', serif; font-style: italic; margin-left: 4px; }
+  .bingo-cell.shared-cell { outline: 3px solid var(--pink-deep); outline-offset: -1px; }
+  .bingo-cell .shared-heart {
+    position: absolute; top: 6px; left: 6px;
+    background: var(--pink-deep); color: #fff;
+    font-size: 13px; width: 22px; height: 22px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    z-index: 3; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
 
   .book-card.dimmed {
     opacity: 0.15;
@@ -414,8 +461,9 @@
     justify-content: center;
   }
   .book-cover-wrap img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     box-shadow: 8px 12px 24px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.15);
     display: block;
   }
@@ -438,7 +486,7 @@
     border-radius: 12px;
     transform: rotate(-4deg);
   }
-  .book-cover-wrap img { position: relative; z-index: 1; }
+  .book-cover-wrap img { position: relative; z-index: 1; object-position: center; }
 
   .book-meta {
     display: flex;
@@ -819,6 +867,8 @@
   <span class="sep"></span>
   <button data-filter="physical">Physical</button>
   <button data-filter="audio">Audio</button>
+  <span class="sep"></span>
+  <button data-filter="shared">♥ Shared</button>
 </div>
 
 <!-- ============================================================ -->
