@@ -2,6 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  (function() {
+    function applyScale() {
+      var vw = window.innerWidth;
+      if (vw < 816) {
+        document.documentElement.style.zoom = vw / 816;
+        document.documentElement.style.overflowX = 'hidden';
+      } else {
+        document.documentElement.style.zoom = '';
+        document.documentElement.style.overflowX = '';
+      }
+    }
+    applyScale();
+    window.addEventListener('resize', applyScale);
+  })();
+</script>
 <title>A Year of Reading — for Andres</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
