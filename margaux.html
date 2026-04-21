@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=816, user-scalable=yes">
+<script>
+  (function() {
+    function applyScale() {
+      var vw = window.innerWidth;
+      document.documentElement.style.zoom = vw < 816 ? vw / 816 : '';
+    }
+    applyScale();
+    window.addEventListener('resize', applyScale);
+  })();
+</script>
 <title>A Year of Reading — for Margaux</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
