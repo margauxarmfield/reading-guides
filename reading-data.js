@@ -3,7 +3,7 @@
 // the book text itself; the "cite" line is a thematic editorial label.
 window.READING_DATA = [
   {
-    month: "April", num: "04", season: "spring", folio: "Month One",
+    month: "April", num: "04", season: "spring", folio: "Month One", shared: true,
     books: [
       {
         slug: "pachinko", ext: "jpg", title: "Pachinko", author: "Min Jin Lee",
@@ -15,8 +15,8 @@ window.READING_DATA = [
       {
         slug: "open-water", title: "Open Water", author: "Caleb Azumah Nelson",
         pages: 160, rating: 4.10, genre: "fiction", format: "audio", shared: true,
-        blurb: "Our shared read — short, lyrical, and emotional. A headphones-on listen to move through together.",
-        quote: "A slim, headphones-on read. Listen after dark; it moves like a song you already half-know.",
+        blurb: "Our shared read — short, lyrical, and emotional. Listen along with Andres.",
+        quote: "A slim, headphones-on read. Move through it together after dark; it moves like a song you both already half-know.",
         cite: "Reading this one with Andres · On listening"
       }
     ]
@@ -60,13 +60,13 @@ window.READING_DATA = [
     ]
   },
   {
-    month: "July", num: "07", season: "summer-warm", folio: "Month Four",
+    month: "July", num: "07", season: "summer-warm", folio: "Month Four", shared: true,
     books: [
       {
         slug: "lonesome-dove", title: "Lonesome Dove", author: "Larry McMurtry",
         pages: 843, rating: 4.59, genre: "fiction", format: "physical", shared: true,
-        blurb: "Our shared read — expansive and character-driven. Let's take the trail together.",
-        quote: "Eight hundred pages of big sky and bigger hearts. The summer book against which all other summer books are measured.",
+        blurb: "Our shared read — expansive, character-driven, and rich in friendship and purpose. Let's take the trail together.",
+        quote: "Eight hundred pages of big sky and bigger hearts. A summer to ride alongside Gus and Call — and alongside each other.",
         cite: "Reading this one with Andres · On the long trail"
       },
       {
@@ -89,11 +89,11 @@ window.READING_DATA = [
         cite: "Editor's note · On play"
       },
       {
-        slug: "locke-lamora", title: "The Lies of Locke Lamora", author: "Scott Lynch",
-        pages: 499, rating: 4.30, genre: "fiction", format: "audio",
-        blurb: "Fast-paced, witty fantasy with strong characters.",
-        quote: "A heist caper with a fantasy coat on. Clever, profane, propulsive — the perfect palate cleanser.",
-        cite: "Editor's note · On the score"
+        slug: "factfulness", title: "Factfulness", author: "Hans Rosling",
+        pages: 352, rating: 4.35, genre: "nonfiction", format: "audio",
+        blurb: "Data-driven perspective shifts about the world.",
+        quote: "An optimistic tune-up for how you read the news. A clear-eyed close to a summer of big stories.",
+        cite: "Editor's note · On seeing clearly"
       }
     ]
   },
@@ -117,7 +117,7 @@ window.READING_DATA = [
     ]
   },
   {
-    month: "October", num: "10", season: "fall-light", folio: "Month Seven",
+    month: "October", num: "10", season: "fall-light", folio: "Month Seven", shared: true,
     books: [
       {
         slug: "wives-under-sea", title: "Our Wives Under the Sea", author: "Julia Armfield",
@@ -136,13 +136,13 @@ window.READING_DATA = [
     ]
   },
   {
-    month: "November", num: "11", season: "fall-warm", folio: "Month Eight",
+    month: "November", num: "11", season: "fall-warm", folio: "Month Eight", shared: true,
     books: [
       {
         slug: "anthropocene", title: "The Anthropocene Reviewed", author: "John Green",
         pages: 304, rating: 4.35, genre: "nonfiction", format: "physical", shared: true,
-        blurb: "Our shared read — reflective essays about modern life and meaning. Read one at a time, together.",
-        quote: "Bite-size essays you can read one at a time with coffee. Funny, aching, and surprisingly hopeful.",
+        blurb: "Our shared read — bite-size essays on being human in the strangest of epochs. Read along with Andres.",
+        quote: "One essay at a time, over coffee. Funny, aching, and surprisingly hopeful — a small comfort to keep in common.",
         cite: "Reading this one with Andres · On small wonders"
       },
       {
@@ -222,11 +222,11 @@ window.READING_DATA = [
         cite: "Editor's note · On medicine"
       },
       {
-        slug: "factfulness", title: "Factfulness", author: "Hans Rosling",
-        pages: 352, rating: 4.35, genre: "nonfiction", format: "audio",
-        blurb: "Data-driven perspective shifts about the world.",
-        quote: "An optimistic tune-up for how you read the news. A clear-eyed way to close the year.",
-        cite: "Editor's note · On seeing clearly"
+        slug: "locke-lamora", title: "The Lies of Locke Lamora", author: "Scott Lynch",
+        pages: 499, rating: 4.30, genre: "fiction", format: "audio",
+        blurb: "Fast-paced, witty fantasy with strong characters.",
+        quote: "A heist caper with a fantasy coat on. Clever, profane, propulsive — a welcome palette cleanser between heavier reads.",
+        cite: "Editor's note · On the score"
       }
     ]
   }

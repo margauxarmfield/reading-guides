@@ -2,8 +2,6 @@
 (function(){
   const data = window.READING_DATA;
 
-  const goodreads = (b) => 'https://www.goodreads.com/search?q=' + encodeURIComponent(b.title);
-
   // --- Table of Contents ---
   const tocGrid = document.getElementById('tocGrid');
   const seasonColor = {
@@ -16,23 +14,22 @@
     'fall-warm': '#f7b09c',
     'fall-light': '#f0a3bd',
     'fall-deep': '#d06687',
-    winter: 'var(--teal)',
-    'winter-light': '#5eb0a5',
-    'winter-deep': '#2f7970',
-    'winter-cyan': 'var(--cyan)'
+    winter: '#8B5FBF',
+    'winter-light': '#C9A5E0',
+    'winter-deep': 'var(--teal)',
+    'winter-cyan': '#3A6FA8'
   };
 
   data.forEach((m, i) => {
-    const pg = 3 + i;
+    const pg = 3 + i; // cover=1, contents=2, months start at 3
     const row = document.createElement('div');
     row.className = 'toc-month';
-    const hasShared = m.books.some(b => b.shared);
-    const sharedBadge = hasShared ? ' <span class="toc-heart" title="Shared read with Andres">♥</span>' : '';
+    const sharedBadge = m.shared ? ' <span class="toc-heart" title="Shared read with Andres">♥</span>' : '';
     row.innerHTML = `
       <div class="num">${m.num}</div>
       <div class="label">
         <span class="mname"><span class="toc-dot" style="background:${seasonColor[m.season]}"></span>${m.month}${sharedBadge}</span>
-        <span class="books"><a href="${goodreads(m.books[0])}" target="_blank" rel="noopener" class="toc-link">${m.books[0].title}</a> · <a href="${goodreads(m.books[1])}" target="_blank" rel="noopener" class="toc-link">${m.books[1].title}</a></span>
+        <span class="books">${m.books[0].title} · ${m.books[1].title}</span>
       </div>
       <div class="pg">${String(pg).padStart(2,'0')}</div>
     `;
@@ -54,6 +51,7 @@
 
   data.forEach((m, idx) => {
     const page = document.createElement('div');
+    // Alternate layout variants: variant-a on left, variant-b on right
     page.className = `page month-page ${m.season}`;
 
     const pageNum = idx + 3;
@@ -62,7 +60,7 @@
       <div class="month-header">
         <div class="hdr-l">№ ${String(idx + 1).padStart(2,'0')} of Twelve</div>
         <div class="month-name display">${m.month}<span class="num-overlay display-italic">${m.num}</span></div>
-        <div class="hdr-r">The Reading Room</div>
+        <div class="hdr-r">Margaux's Reading Room</div>
       </div>
       <div class="hair"></div>
       <div class="books-spread">
@@ -76,9 +74,9 @@
             <div class="book-cover-wrap">
               <div class="shape-bg"></div>
               <img src="${(window.__resources && window.__resources[b.slug]) || ('covers/' + b.slug + '.' + (b.ext || 'jpg'))}" alt="${b.title}">
-              ${b.shared ? '<div class="shared-ribbon" title="Reading with Andres"><span>♥</span> with Andres</div>' : ''}
+              ${b.shared ? '<div class="shared-ribbon" title="Reading with Andres"><span class="heart">♥</span> with Andres</div>' : ''}
             </div>
-            <h2 class="book-title"><a href="${goodreads(b)}" target="_blank" rel="noopener" class="title-link">${b.title}</a>${b.shared ? ' <span class="inline-heart">♥</span>' : ''}</h2>
+            <h2 class="book-title"><a class="gr-link" href="${b.goodreads || ('https://www.goodreads.com/search?q=' + encodeURIComponent(b.title))}" target="_blank" rel="noopener">${b.title}${b.shared ? ' <span class="inline-heart">♥</span>' : ''}</a></h2>
             <div class="book-stats">
               <span>${b.author}</span>
               <span class="tag">${b.pages} pp</span>
@@ -96,7 +94,7 @@
       <div class="month-footer">
         <span>${m.folio}</span>
         <span class="folio display-italic">pg. ${String(pageNum).padStart(2,'0')}</span>
-        <span>A Year of Reading · 2026</span>
+        <span>A Year of Reading · for Margaux</span>
       </div>
     `;
     container.appendChild(page);
@@ -119,15 +117,17 @@
     else cells.push(allBooks[i < 12 ? i : i - 1]);
   }
 
+  // State per slug: 'reading' | 'done' | undefined
   const storageKey = 'reading-bingo-2026-v2';
   let state = {};
   try { state = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch(e){}
+  // Seed The Book of Eels as currently reading by default
   if (!(eels.slug in state)) state[eels.slug] = 'reading';
 
   function cycle(current) {
     if (!current) return 'reading';
     if (current === 'reading') return 'done';
-    return null;
+    return null; // back to unread
   }
 
   function render() {
@@ -142,7 +142,7 @@
       if (b.shared) cell.classList.add('shared-cell');
       cell.innerHTML = `
         <img src="${(window.__resources && window.__resources[b.slug]) || ('covers/' + b.slug + '.' + (b.ext || 'jpg'))}" alt="${b.title}">
-        <div class="cell-label">${b.month} · <a href="${goodreads(b)}" target="_blank" rel="noopener" class="title-link" onclick="event.stopPropagation()">${b.title}</a></div>
+        <div class="cell-label">${b.month} · ${b.title}</div>
         ${b.shared ? '<span class="shared-heart" title="With Andres">♥</span>' : ''}
         ${s === 'reading' ? '<span class="reading-flag">Reading</span>' : ''}
       `;
