@@ -6,7 +6,7 @@ window.READING_DATA = [
     month: "April", num: "04", season: "spring", folio: "Month One",
     books: [
       {
-        slug: "pachinko", ext: "png", title: "Pachinko", author: "Min Jin Lee",
+        slug: "pachinko", ext: "jpg", title: "Pachinko", author: "Min Jin Lee",
         pages: 496, rating: 4.34, genre: "fiction", format: "physical",
         blurb: "Sweeping multi-generational story about identity and migration. A strong match for your love of Americanah.",
         quote: "Four generations, one inheritance of resilience — a novel that hands you a family and asks you to keep them.",
