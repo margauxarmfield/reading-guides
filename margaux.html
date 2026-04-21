@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=816, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
   (function() {
     function applyScale() {
       var vw = window.innerWidth;
-      document.documentElement.style.zoom = vw < 816 ? vw / 816 : '';
+      if (vw < 816) {
+        document.documentElement.style.zoom = vw / 816;
+        document.documentElement.style.overflowX = 'hidden';
+      } else {
+        document.documentElement.style.zoom = '';
+        document.documentElement.style.overflowX = '';
+      }
     }
     applyScale();
     window.addEventListener('resize', applyScale);
