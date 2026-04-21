@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Year of Reading — 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f5f1e8;
+    --paper-warm: #f8f4ea;
+    --teal: #41988D;
+    --teal-deep: #2f7970;
+    --cyan: #3DC0B5;
+    --mint: #C8E7D0;
+    --mint-deep: #9ccba8;
+    --pink: #E57C9E;
+    --pink-deep: #c95f80;
+    --yellow: #FBDC44;
+    --orange: #F9953C;
+    --orange-deep: #e07a1c;
+  }
+
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #2a2824;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    page-break-after: always;
+  }
+
+  /* ============ FILTER BAR ============ */
+  .filter-bar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius: 100px;
+    padding: 8px;
+    display: flex;
+    gap: 4px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    z-index: 100;
+    font-family: 'Instrument Sans', sans-serif;
+  }
+  .filter-bar button {
+    border: none;
+    background: transparent;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .filter-bar button:hover { color: #000; }
+  .filter-bar button.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .filter-bar .sep {
+    width: 1px;
+    background: #e5e5e5;
+    margin: 4px 2px;
+  }
+
+  .book-card.dimmed {
+    opacity: 0.15;
+    filter: grayscale(1);
+    transition: opacity 0.3s, filter 0.3s;
+  }
+  .book-card { transition: opacity 0.3s, filter 0.3s; }
+
+  @media print {
+    body { background: white; padding: 0; gap: 0; }
+    .page { box-shadow: none; margin: 0; }
+    .filter-bar { display: none !important; }
+    .book-card.dimmed { opacity: 1; filter: none; }
+  }
+
+  /* ============ TYPE ============ */
+  .display { font-family: 'Instrument Serif', serif; font-weight: 400; letter-spacing: -0.01em; }
+  .display-italic { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+  .sans { font-family: 'Instrument Sans', sans-serif; }
+  .mono-label {
+    font-family: 'Instrument Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  /* ============ COVER PAGE ============ */
+  .cover {
+    background: var(--teal);
+    color: var(--paper);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .cover-top .masthead {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .cover-title {
+    font-size: 140px;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    margin: 40px 0;
+  }
+  .cover-title em { color: var(--yellow); }
+  .cover-hero {
+    position: absolute;
+    right: 60px;
+    top: 180px;
+    width: 280px;
+    height: 400px;
+    transform: rotate(6deg);
+    box-shadow: -20px 30px 60px rgba(0,0,0,0.3);
+    z-index: 2;
+  }
+  .cover-hero-2 {
+    position: absolute;
+    right: 320px;
+    top: 280px;
+    width: 200px;
+    height: 290px;
+    transform: rotate(-8deg);
+    box-shadow: -15px 20px 40px rgba(0,0,0,0.25);
+    z-index: 1;
+  }
+  .cover-hero img, .cover-hero-2 img { width: 100%; height: 100%; object-fit: cover; }
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+  }
+  .cover-bottom .lede {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.3;
+    max-width: 380px;
+  }
+  .cover-issue {
+    font-family: 'Instrument Sans', sans-serif;
+    text-align: right;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+  .cover-issue .big {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 48px;
+    letter-spacing: 0;
+    display: block;
+    text-transform: none;
+    line-height: 1;
+    margin-top: 8px;
+    color: var(--yellow);
+  }
+  .cover .circle-stamp {
+    position: absolute;
+    bottom: 180px;
+    right: 100px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--pink);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.1;
+    transform: rotate(-12deg);
+    z-index: 3;
+    padding: 10px;
+  }
+
+  /* ============ CONTENTS PAGE ============ */
+  .contents {
+    background: var(--paper);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  .contents-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 16px;
+  }
+  .contents-head h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .contents-head h1 em { color: var(--orange-deep); }
+  .contents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 40px;
+    margin-top: 40px;
+    flex: 1;
+  }
+  .toc-month {
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    gap: 16px;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+  .toc-month .num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    opacity: 0.5;
+  }
+  .toc-month .label { display: flex; flex-direction: column; gap: 2px; }
+  .toc-month .mname {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    line-height: 1;
+  }
+  .toc-month .books {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    color: #555;
+    line-height: 1.4;
+  }
+  .toc-month .pg {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px;
+    text-align: right;
+    color: var(--ink);
+  }
+  .toc-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .contents-footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat .num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 54px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat .lbl {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #555;
+  }
+
+  /* ============ MONTH SPREAD ============ */
+  .month-page {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0;
+    position: relative;
+  }
+  .month-page.spring { background: var(--mint); }
+  .month-page.spring-deep { background: #a9d8b5; }
+  .month-page.summer { background: var(--yellow); }
+  .month-page.summer-warm { background: #ffc94a; }
+  .month-page.late-summer { background: var(--orange); }
+  .month-page.fall { background: var(--pink); }
+  .month-page.fall-warm { background: #f7b09c; }
+  .month-page.fall-light { background: #f0a3bd; }
+  .month-page.fall-deep { background: #d06687; }
+  .month-page.winter { background: var(--teal); color: var(--paper); }
+  .month-page.winter-light { background: #5eb0a5; color: var(--paper); }
+  .month-page.winter-deep { background: #2f7970; color: var(--paper); }
+  .month-page.winter-cyan { background: var(--cyan); color: var(--paper); }
+  .month-page.winter .hdr-sub, .month-page.winter .folio,
+  .month-page.winter-light .hdr-sub, .month-page.winter-light .folio,
+  .month-page.winter-deep .hdr-sub, .month-page.winter-deep .folio,
+  .month-page.winter-cyan .hdr-sub, .month-page.winter-cyan .folio { color: var(--paper); }
+  .month-page.winter .hair,
+  .month-page.winter-light .hair,
+  .month-page.winter-deep .hair,
+  .month-page.winter-cyan .hair { background: var(--paper); }
+
+  .month-header {
+    padding: 40px 56px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 20px;
+  }
+  .hdr-l, .hdr-r {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+  .hdr-r { text-align: right; }
+  .month-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 110px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    text-align: center;
+    position: relative;
+  }
+  .month-name .num-overlay {
+    position: absolute;
+    top: -10px;
+    right: -40px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 28px;
+    opacity: 0.7;
+  }
+  .hair {
+    height: 1px;
+    background: var(--ink);
+    margin: 0 56px;
+    opacity: 0.4;
+  }
+
+  .books-spread {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0;
+    padding: 32px 56px;
+    align-items: stretch;
+  }
+  .spread-divider { background: var(--ink); opacity: 0.2; }
+
+  .book-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 28px;
+  }
+  .book-card:first-child { padding-left: 0; }
+  .book-card:last-child { padding-right: 0; }
+
+  .book-cover-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2/3;
+    max-height: 340px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .book-cover-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 8px 12px 24px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.15);
+    display: block;
+  }
+  .book-cover-wrap .shape-bg {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    z-index: 0;
+  }
+  .book-card.variant-a .shape-bg {
+    background: rgba(255,255,255,0.4);
+    top: 15%;
+    left: 8%;
+  }
+  .book-card.variant-b .shape-bg {
+    background: rgba(0,0,0,0.06);
+    top: 12%;
+    right: 5%;
+    border-radius: 12px;
+    transform: rotate(-4deg);
+  }
+  .book-cover-wrap img { position: relative; z-index: 1; }
+
+  .book-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding-bottom: 6px;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.85;
+  }
+  .book-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 38px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .book-stats {
+    display: flex;
+    gap: 16px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    align-items: center;
+  }
+  .book-stats .tag {
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(0,0,0,0.08);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  .month-page.winter .book-stats .tag { background: rgba(255,255,255,0.2); }
+  .book-stats .rating {
+    display: inline-flex;
+    gap: 2px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+  }
+  .book-blurb {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    text-wrap: pretty;
+    max-width: 42ch;
+  }
+
+  .pull-quote {
+    padding: 18px 0 0;
+    border-top: 1px solid currentColor;
+    margin-top: auto;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.3;
+    position: relative;
+    padding-left: 28px;
+  }
+  .pull-quote::before {
+    content: "\201C";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    font-size: 44px;
+    line-height: 0.6;
+    opacity: 0.5;
+  }
+  .pull-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-top: 10px;
+    opacity: 0.7;
+  }
+
+  .month-footer {
+    padding: 20px 56px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+  .folio {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* Decorative orbs */
+  .deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.6;
+    z-index: 0;
+  }
+  .books-spread { position: relative; z-index: 1; }
+
+  /* Alt layout — full-bleed hero cover on right */
+  .month-page.full-bleed .books-spread {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    gap: 0;
+  }
+  .month-page.full-bleed .book-card.hero {
+    padding: 40px 56px;
+    background: rgba(255,255,255,0.35);
+  }
+  .month-page.winter.full-bleed .book-card.hero { background: rgba(0,0,0,0.15); }
+
+  /* ============ BINGO PAGE ============ */
+  .bingo {
+    background: var(--paper);
+    padding: 36px 48px 28px;
+    display: flex;
+    flex-direction: column;
+  }
+  .bingo-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+  }
+  .bingo-head h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 54px;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+  .bingo-head h1 em { color: var(--pink-deep); font-style: italic; }
+  .bingo-head .sub {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 13px;
+    max-width: 280px;
+    text-align: right;
+    line-height: 1.3;
+  }
+  .bingo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+    flex: 1;
+  }
+  .bingo-cell {
+    position: relative;
+    aspect-ratio: 1/1;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .bingo-cell:hover { transform: scale(1.02); }
+  .bingo-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bingo-cell .cell-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.72);
+    color: var(--paper);
+    padding: 4px 5px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 7.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .bingo-cell.done::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(65,152,141,0.85);
+    pointer-events: none;
+  }
+  .bingo-cell.done::before {
+    content: "✓";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 60px;
+    color: var(--yellow);
+    z-index: 2;
+    font-style: italic;
+  }
+  .bingo-cell.reading {
+    outline: 3px solid var(--orange);
+    outline-offset: -1px;
+  }
+  .bingo-cell.reading .reading-flag {
+    position: absolute;
+    top: 5px; right: 5px;
+    background: var(--orange);
+    color: var(--ink);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 7px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 3px 6px;
+    border-radius: 100px;
+    z-index: 3;
+  }
+  .bingo-cell.freespace {
+    background: var(--pink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    cursor: default;
+  }
+  .bingo-cell.freespace:hover { transform: none; }
+  .bingo-cell.freespace .fs-inner {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.15;
+  }
+  .bingo-cell.freespace .fs-inner strong {
+    display: block;
+    font-style: normal;
+    font-size: 38px;
+    letter-spacing: -0.02em;
+    margin-bottom: 2px;
+  }
+  .bingo-footer {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+  .bingo-footer .progress {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .bingo-footer button {
+    background: transparent;
+    border: 1px solid var(--ink);
+    padding: 6px 12px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    border-radius: 100px;
+  }
+  .bingo-footer button:hover { background: var(--ink); color: var(--paper); }
+  @media print {
+    .bingo-footer button { display: none; }
+    .bingo-cell { cursor: default; }
+  }
+
+  /* ============ BACK PAGE ============ */
+  .back {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .back h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 96px;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+  .back h1 em { color: var(--yellow); }
+  .back-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 48px;
+    margin: 40px 0;
+  }
+  .back-stat .n {
+    font-family: 'Instrument Serif', serif;
+    font-size: 80px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .back-stat .l {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 6px;
+    color: #bbb;
+  }
+  .back-stat .n em {
+    font-style: italic;
+    font-size: 48px;
+    color: var(--pink);
+  }
+  .back-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 40px;
+    margin-top: 24px;
+  }
+  .legend-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-top: 1px solid #333;
+  }
+  .legend-row .swatch {
+    width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0;
+  }
+  .legend-row .txt h4 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .legend-row .txt p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #bbb;
+    margin-top: 2px;
+  }
+  .back-sig {
+    text-align: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 20px;
+    padding-top: 24px;
+    border-top: 1px solid #333;
+  }
+  .back-sig .big {
+    font-size: 64px;
+    display: block;
+    font-style: normal;
+    letter-spacing: -0.02em;
+    color: var(--yellow);
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Filter bar (screen only) -->
+<div class="filter-bar" id="filterBar">
+  <button class="active" data-filter="all">All 24</button>
+  <span class="sep"></span>
+  <button data-filter="fiction">Fiction</button>
+  <button data-filter="nonfiction">Nonfiction</button>
+  <span class="sep"></span>
+  <button data-filter="physical">Physical</button>
+  <button data-filter="audio">Audio</button>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 1 — COVER -->
+<!-- ============================================================ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="masthead">The Reading Room · Vol. XXVI</div>
+    <div class="masthead">Issue 01 · $0.00</div>
+  </div>
+
+  <div>
+    <div class="mono-label" style="color:var(--yellow); margin-bottom: 20px;">A Personal Reading Guide ⟶ Twelve Months</div>
+    <h1 class="cover-title display">A Year<br><em class="display-italic">of</em> Reading.</h1>
+  </div>
+
+  <img class="cover-hero" id="coverHero1" alt="">
+  <div class="cover-hero-2"><img id="coverHero2" alt=""></div>
+
+  <div class="circle-stamp">24<br>books<br><em style="font-size:11px;">hand-picked</em></div>
+
+  <div class="cover-bottom">
+    <p class="lede">Twenty-four books, two each month — a rhythm of fiction and nonfiction, page and sound, chosen for the shape of a year.</p>
+    <div class="cover-issue">
+      Curated for<br>
+      <span class="big">The Reader</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 — CONTENTS -->
+<!-- ============================================================ -->
+<div class="page contents">
+  <div class="contents-head">
+    <h1 class="display">Con<em class="display-italic">tents</em></h1>
+    <div class="mono-label">Twelve Months · Twenty-Four Titles</div>
+  </div>
+
+  <div class="contents-grid" id="tocGrid"></div>
+
+  <div class="contents-footer">
+    <div class="stat"><span class="num display">24</span><span class="lbl">Books in total</span></div>
+    <div class="stat"><span class="num display-italic">9,349</span><span class="lbl">Pages to turn</span></div>
+    <div class="stat"><span class="num display">16/8</span><span class="lbl">Fiction / Nonfiction</span></div>
+    <div class="stat"><span class="num display-italic">4.31</span><span class="lbl">Avg. rating</span></div>
+  </div>
+</div>
+
+<!-- Month pages injected here -->
+<div id="monthPages"></div>
+
+<!-- ============================================================ -->
+<!-- BINGO PAGE -->
+<!-- ============================================================ -->
+<div class="page bingo">
+  <div class="bingo-head">
+    <h1 class="display">Reader's <em>Bingo.</em></h1>
+    <p class="sub">A year of reading, at a glance. Click to mark off as you finish — your progress saves automatically.</p>
+  </div>
+  <div class="bingo-grid" id="bingoGrid"></div>
+  <div class="bingo-footer">
+    <span>Click a cell to cycle: unread → reading → completed</span>
+    <span class="progress" id="bingoProgress">0 of 24 complete</span>
+    <button id="bingoReset">Reset Board</button>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- BACK PAGE -->
+<!-- ============================================================ -->
+<div class="page back">
+  <div>
+    <div class="mono-label" style="color:var(--pink); margin-bottom:16px;">End Matter</div>
+    <h1 class="display">The <em class="display-italic">numbers</em><br>of the year.</h1>
+  </div>
+
+  <div class="back-grid">
+    <div class="back-stat"><div class="n display">9,349</div><div class="l">Total pages</div></div>
+    <div class="back-stat"><div class="n display-italic">26</div><div class="l">Pages per day (avg)</div></div>
+    <div class="back-stat"><div class="n display">4.31<em>★</em></div><div class="l">Average rating</div></div>
+    <div class="back-stat"><div class="n display">16</div><div class="l">Works of fiction</div></div>
+    <div class="back-stat"><div class="n display-italic">8</div><div class="l">Works of nonfiction</div></div>
+    <div class="back-stat"><div class="n display">12/12</div><div class="l">Physical / audio split</div></div>
+  </div>
+
+  <div>
+    <div class="mono-label" style="color:var(--yellow); margin-bottom:12px;">A note on the format</div>
+    <div class="back-legend">
+      <div class="legend-row">
+        <div class="swatch" style="background:var(--mint)"></div>
+        <div class="txt"><h4>Spring · Apr–May</h4><p>Green months for new rhythms and quiet lyricism.</p></div>
+      </div>
+      <div class="legend-row">
+        <div class="swatch" style="background:linear-gradient(135deg,var(--yellow) 50%, var(--orange) 50%)"></div>
+        <div class="txt"><h4>Summer · Jun–Aug</h4><p>Long days for epic stories and deep-dive reads.</p></div>
+      </div>
+      <div class="legend-row">
+        <div class="swatch" style="background:var(--pink)"></div>
+        <div class="txt"><h4>Autumn · Sep–Nov</h4><p>Atmospheric, reflective, emotionally layered.</p></div>
+      </div>
+      <div class="legend-row">
+        <div class="swatch" style="background:var(--teal)"></div>
+        <div class="txt"><h4>Winter · Dec–Mar</h4><p>Big ideas for the longest nights — science, memoir, history.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-sig">
+    See you on the<span class="big display-italic">other side.</span>
+  </div>
+</div>
+
+<script src="reading-data.js"></script>
+<script src="reading-render.js"></script>
+<script>
+  // Wire up cover page hero images from __resources (works both inline & bundled)
+  (function(){
+    const r = window.__resources || {};
+    const h1 = document.getElementById('coverHero1');
+    const h2 = document.getElementById('coverHero2');
+    if (h1) h1.src = r['pachinko'] || 'covers/pachinko.png';
+    if (h2) h2.src = r['immense-world'] || 'covers/immense-world.jpg';
+  })();
+</script>
+
+</body>
+</html>

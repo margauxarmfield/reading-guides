@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reading Guides — Andres & Margaux</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: #26201A;
+      font-family: 'Instrument Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Tab Navigation ── */
+    .tab-nav {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 12px 16px;
+      background: #1C1712;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      z-index: 10;
+    }
+
+    .tab-nav .wordmark {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(243,232,212,0.5);
+      position: absolute;
+      left: 24px;
+      letter-spacing: 0.01em;
+    }
+
+    .tab-group {
+      display: flex;
+      background: rgba(255,255,255,0.07);
+      border-radius: 100px;
+      padding: 4px;
+      gap: 2px;
+    }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      padding: 8px 24px;
+      border-radius: 100px;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      color: rgba(243,232,212,0.55);
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      color: rgba(243,232,212,0.85);
+    }
+
+    .tab-btn.active {
+      background: #C8744A;
+      color: #F3E8D4;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .tab-btn .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+
+    /* ── Guide Frames ── */
+    .guide-area {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guide-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+    }
+
+    .guide-frame.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="tab-nav">
+    <span class="wordmark">Reading Guides</span>
+    <div class="tab-group">
+      <button class="tab-btn active" data-guide="andres">
+        <span class="dot"></span>Andres
+      </button>
+      <button class="tab-btn" data-guide="margaux">
+        <span class="dot"></span>Margaux
+      </button>
+    </div>
+  </nav>
+
+  <div class="guide-area">
+    <iframe
+      id="frame-andres"
+      class="guide-frame active"
+      src="andres.html"
+      title="Andres's Reading Guide"
+    ></iframe>
+    <iframe
+      id="frame-margaux"
+      class="guide-frame"
+      src=""
+      data-src="margaux.html"
+      title="Margaux's Reading Guide"
+    ></iframe>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const frames = document.querySelectorAll('.guide-frame');
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const guide = btn.dataset.guide;
+
+        tabs.forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+
+        frames.forEach(f => {
+          const isTarget = f.id === `frame-${guide}`;
+          // Lazy-load the iframe on first activation
+          if (isTarget && f.dataset.src) {
+            f.src = f.dataset.src;
+            delete f.dataset.src;
+          }
+          f.classList.toggle('active', isTarget);
+        });
+
+        // Persist selection across page reloads
+        sessionStorage.setItem('active-guide', guide);
+      });
+    });
+
+    // Restore last-selected tab
+    const saved = sessionStorage.getItem('active-guide');
+    if (saved && saved !== 'andres') {
+      document.querySelector(`[data-guide="${saved}"]`)?.click();
+    }
+  </script>
+
+</body>
+</html>

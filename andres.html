@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Year of Reading — for Andres</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* Warm earth tone palette */
+    --ink: #2E2620;
+    --paper: #F3E8D4;
+    --paper-warm: #F7EEDC;
+    --cream: #EADFC7;
+
+    /* Spring — peach → light rust */
+    --spring-1: #F2B48A;  /* peach */
+    --spring-2: #E8916A;  /* soft coral */
+
+    /* Summer — orange → amber → gold */
+    --summer-1: #D9773A;  /* orange */
+    --summer-2: #E8A440;  /* amber */
+    --summer-3: #D4A04A;  /* ochre gold */
+
+    /* Autumn — moss → olive → deep rust */
+    --autumn-1: #8A9A7B;  /* sage/moss */
+    --autumn-2: #6B7A5A;  /* deeper moss */
+    --autumn-3: #9E5430;  /* sienna */
+
+    /* Winter — slate blue → teal → deep navy → espresso */
+    --winter-1: #7A5A3C;  /* warm umber */
+    --winter-2: #3F6B6E;  /* teal */
+    --winter-3: #2E4A5C;  /* deep slate blue */
+    --winter-4: #3D2F24;  /* espresso */
+
+    /* Accents kept for UI */
+    --terracotta: #C8744A;
+    --terracotta-deep: #A6562E;
+    --rust: #B8542E;
+    --clay: #B06844;
+    --brick: #8F4830;
+    --sienna: #9E5430;
+    --ochre: #D4A04A;
+    --mustard: #C99A3F;
+    --amber: #E8A947;
+    --sage: #8A9A7B;
+    --moss: #6B7A5A;
+    --olive: #7A7A4F;
+    --umber: #6B4423;
+    --bone: #D9C9A8;
+    --espresso: #3D2F24;
+  }
+
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: #26201A;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    page-break-after: always;
+  }
+
+  /* ============ FILTER BAR ============ */
+  .filter-bar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--paper);
+    border-radius: 100px;
+    padding: 8px;
+    display: flex;
+    gap: 4px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    z-index: 100;
+    font-family: 'Instrument Sans', sans-serif;
+  }
+  .filter-bar button {
+    border: none;
+    background: transparent;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #6b5d4a;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .filter-bar button:hover { color: var(--ink); }
+  .filter-bar button.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .filter-bar .sep {
+    width: 1px;
+    background: rgba(0,0,0,0.12);
+    margin: 4px 2px;
+  }
+  .filter-bar button[data-filter="shared"] { color: var(--brick); }
+  .filter-bar button[data-filter="shared"].active { background: var(--brick); color: var(--paper); }
+
+  .book-card.dimmed {
+    opacity: 0.15;
+    filter: grayscale(1);
+    transition: opacity 0.3s, filter 0.3s;
+  }
+  .book-card { transition: opacity 0.3s, filter 0.3s; }
+
+  @media print {
+    body { background: white; padding: 0; gap: 0; }
+    .page { box-shadow: none; margin: 0; }
+    .filter-bar { display: none !important; }
+    .book-card.dimmed { opacity: 1; filter: none; }
+  }
+
+  /* Goodreads links — blend with typography, hint on hover */
+  .title-link, .toc-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(46,38,32,0.28);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .title-link:hover, .toc-link:hover {
+    color: var(--brick);
+    border-bottom-color: var(--brick);
+  }
+  @media print {
+    .title-link, .toc-link { border-bottom: none; color: inherit; }
+  }
+
+  /* ============ TYPE ============ */
+  .display { font-family: 'Instrument Serif', serif; font-weight: 400; letter-spacing: -0.01em; }
+  .display-italic { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+  .sans { font-family: 'Instrument Sans', sans-serif; }
+  .mono-label {
+    font-family: 'Instrument Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  /* ============ COVER PAGE ============ */
+  .cover {
+    background: var(--terracotta);
+    color: var(--paper);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 140px;
+    background: linear-gradient(180deg, transparent, rgba(62,38,25,0.25));
+    pointer-events: none;
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 4;
+  }
+  .cover-top .masthead {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .cover-title-wrap { position: relative; z-index: 4; margin-top: 120px; }
+  .cover-title {
+    font-size: 140px;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    margin: 40px 0;
+    text-shadow: 0 2px 18px rgba(62,38,25,0.25);
+  }
+  .cover-title em { color: var(--paper); font-style: italic; }
+  .cover-hero {
+    position: absolute;
+    right: 60px;
+    top: 140px;
+    width: 190px;
+    height: 275px;
+    transform: rotate(6deg);
+    box-shadow: -16px 22px 44px rgba(0,0,0,0.38);
+    z-index: 2;
+    overflow: hidden;
+  }
+  .cover-hero-2 {
+    position: absolute;
+    right: 230px;
+    top: 215px;
+    width: 155px;
+    height: 225px;
+    transform: rotate(-8deg);
+    box-shadow: -14px 18px 36px rgba(0,0,0,0.32);
+    z-index: 1;
+    overflow: hidden;
+  }
+  .cover-hero-3 {
+    position: absolute;
+    right: 340px;
+    top: 150px;
+    width: 130px;
+    height: 190px;
+    transform: rotate(4deg);
+    box-shadow: -12px 14px 30px rgba(0,0,0,0.28);
+    z-index: 1;
+    overflow: hidden;
+  }
+  .cover-hero-4 {
+    position: absolute;
+    right: 100px;
+    top: 420px;
+    width: 135px;
+    height: 195px;
+    transform: rotate(-5deg);
+    box-shadow: -14px 18px 34px rgba(0,0,0,0.32);
+    z-index: 3;
+    overflow: hidden;
+  }
+  .cover-hero img, .cover-hero-2 img, .cover-hero-3 img, .cover-hero-4 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    position: relative;
+    z-index: 4;
+  }
+  .cover-bottom .lede {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.3;
+    max-width: 420px;
+  }
+  .cover-issue {
+    font-family: 'Instrument Sans', sans-serif;
+    text-align: right;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+  .cover-issue .big {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 56px;
+    letter-spacing: 0;
+    display: block;
+    text-transform: none;
+    line-height: 1;
+    margin-top: 8px;
+    color: var(--ochre);
+  }
+  .cover .circle-stamp {
+    position: absolute;
+    bottom: 190px;
+    right: 88px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: var(--sage);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.15;
+    transform: rotate(-12deg);
+    z-index: 3;
+    padding: 10px;
+  }
+  .cover .circle-stamp strong {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    display: block;
+    margin-bottom: 2px;
+  }
+  /* Decorative sun */
+  .cover .sun {
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: var(--ochre);
+    opacity: 0.35;
+    z-index: 1;
+  }
+
+  /* ============ CONTENTS PAGE ============ */
+  .contents {
+    background: var(--paper);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  .contents-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 16px;
+  }
+  .contents-head h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .contents-head h1 em { color: var(--terracotta-deep); }
+  .contents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 40px;
+    margin-top: 40px;
+    flex: 1;
+  }
+  .toc-month {
+    display: grid;
+    grid-template-columns: 40px 1fr 40px;
+    gap: 16px;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(46,38,32,0.15);
+  }
+  .toc-month .num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    opacity: 0.5;
+  }
+  .toc-month .label { display: flex; flex-direction: column; gap: 2px; }
+  .toc-month .mname {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    line-height: 1;
+  }
+  .toc-heart {
+    color: var(--brick);
+    font-size: 16px;
+    display: inline-block;
+    margin-left: 4px;
+    transform: translateY(-1px);
+  }
+  .toc-month .books {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    color: #6b5d4a;
+    line-height: 1.4;
+  }
+  .toc-month .pg {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px;
+    text-align: right;
+    color: var(--ink);
+  }
+  .toc-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .contents-footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 2px solid var(--ink);
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat .num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 54px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat .lbl {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #6b5d4a;
+  }
+
+  /* Dedication block on contents */
+  .dedication {
+    margin-top: 28px;
+    padding: 20px 28px;
+    background: var(--cream);
+    border-left: 3px solid var(--brick);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .dedication .big-heart {
+    font-family: 'Instrument Serif', serif;
+    color: var(--brick);
+    font-size: 38px;
+    line-height: 1;
+  }
+  .dedication p {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--espresso);
+  }
+
+  /* ============ MONTH SPREAD ============ */
+  .month-page {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0;
+    position: relative;
+  }
+  .month-page.peach { background: var(--spring-1); }
+  .month-page.coral { background: var(--spring-2); color: var(--paper); }
+  .month-page.orange { background: var(--summer-1); color: var(--paper); }
+  .month-page.amber { background: var(--summer-2); }
+  .month-page.gold { background: var(--summer-3); }
+  .month-page.moss { background: var(--autumn-1); color: var(--paper); }
+  .month-page.olive { background: var(--autumn-2); color: var(--paper); }
+  .month-page.sienna { background: var(--autumn-3); color: var(--paper); }
+  .month-page.umber { background: var(--winter-1); color: var(--paper); }
+  .month-page.teal { background: var(--winter-2); color: var(--paper); }
+  .month-page.slate { background: var(--winter-3); color: var(--paper); }
+  .month-page.espresso-bg { background: var(--winter-4); color: var(--paper); }
+
+  /* Light-text variants: invert hair color where needed */
+  .month-page.coral .hair,
+  .month-page.orange .hair,
+  .month-page.moss .hair,
+  .month-page.olive .hair,
+  .month-page.sienna .hair,
+  .month-page.umber .hair,
+  .month-page.teal .hair,
+  .month-page.slate .hair,
+  .month-page.espresso-bg .hair { background: var(--paper); }
+
+  .month-header {
+    padding: 40px 56px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 20px;
+  }
+  .hdr-l, .hdr-r {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+  .hdr-r { text-align: right; }
+  .month-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 110px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    text-align: center;
+    position: relative;
+  }
+  .month-name .num-overlay {
+    position: absolute;
+    top: -10px;
+    right: -40px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 28px;
+    opacity: 0.7;
+  }
+  .hair {
+    height: 1px;
+    background: var(--ink);
+    margin: 0 56px;
+    opacity: 0.4;
+  }
+
+  .books-spread {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0;
+    padding: 32px 56px;
+    align-items: stretch;
+    position: relative;
+    z-index: 1;
+  }
+  .spread-divider { background: currentColor; opacity: 0.25; }
+
+  .book-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 28px;
+    position: relative;
+  }
+  .book-card:first-child { padding-left: 0; }
+  .book-card:last-child { padding-right: 0; }
+
+  .book-cover-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2/3;
+    max-height: 340px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .book-cover-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 8px 12px 24px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  .book-cover-wrap .shape-bg {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    z-index: 0;
+  }
+  .book-card.variant-a .shape-bg {
+    background: rgba(255,255,255,0.32);
+    top: 15%;
+    left: 8%;
+  }
+  .book-card.variant-b .shape-bg {
+    background: rgba(0,0,0,0.08);
+    top: 12%;
+    right: 5%;
+    border-radius: 12px;
+    transform: rotate(-4deg);
+  }
+  /* Darker-bg pages need darker shape tint for variant-a */
+  .month-page.coral .book-card.variant-a .shape-bg,
+  .month-page.orange .book-card.variant-a .shape-bg,
+  .month-page.moss .book-card.variant-a .shape-bg,
+  .month-page.olive .book-card.variant-a .shape-bg,
+  .month-page.sienna .book-card.variant-a .shape-bg,
+  .month-page.umber .book-card.variant-a .shape-bg,
+  .month-page.teal .book-card.variant-a .shape-bg,
+  .month-page.slate .book-card.variant-a .shape-bg,
+  .month-page.espresso-bg .book-card.variant-a .shape-bg {
+    background: rgba(255,255,255,0.22);
+  }
+
+  /* Shared-read ribbon (on cover) */
+  .shared-ribbon {
+    position: absolute;
+    top: 10px;
+    right: -12px;
+    z-index: 3;
+    background: var(--brick);
+    color: var(--paper);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 6px 14px 6px 10px;
+    font-weight: 600;
+    transform: rotate(6deg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .shared-ribbon .heart { font-size: 12px; }
+  .inline-heart {
+    color: var(--brick);
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    margin-left: 4px;
+  }
+  .month-page.coral .inline-heart,
+  .month-page.orange .inline-heart,
+  .month-page.olive .inline-heart,
+  .month-page.sienna .inline-heart,
+  .month-page.teal .inline-heart,
+  .month-page.slate .inline-heart,
+  .month-page.espresso-bg .inline-heart { color: var(--amber); }
+
+  .book-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding-bottom: 6px;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.85;
+  }
+  .book-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 36px;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+  .book-stats {
+    display: flex;
+    gap: 12px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .book-stats .tag {
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(0,0,0,0.09);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  .month-page.coral .book-stats .tag,
+  .month-page.orange .book-stats .tag,
+  .month-page.moss .book-stats .tag,
+  .month-page.olive .book-stats .tag,
+  .month-page.sienna .book-stats .tag,
+  .month-page.umber .book-stats .tag,
+  .month-page.teal .book-stats .tag,
+  .month-page.slate .book-stats .tag,
+  .month-page.espresso-bg .book-stats .tag { background: rgba(255,255,255,0.2); }
+  .book-stats .rating {
+    display: inline-flex;
+    gap: 2px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+  }
+  .book-blurb {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    text-wrap: pretty;
+    max-width: 42ch;
+  }
+
+  .pull-quote {
+    padding: 18px 0 0;
+    border-top: 1px solid currentColor;
+    margin-top: auto;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.35;
+    position: relative;
+    padding-left: 28px;
+  }
+  .pull-quote::before {
+    content: "\201C";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    font-size: 44px;
+    line-height: 0.6;
+    opacity: 0.5;
+  }
+  .pull-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-top: 10px;
+    opacity: 0.75;
+  }
+
+  .month-footer {
+    padding: 20px 56px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+  .folio {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* ============ BINGO PAGE ============ */
+  .bingo {
+    background: var(--paper);
+    padding: 36px 48px 28px;
+    display: flex;
+    flex-direction: column;
+  }
+  .bingo-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+  }
+  .bingo-head h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 54px;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+  .bingo-head h1 em { color: var(--brick); font-style: italic; }
+  .bingo-head .sub {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 13px;
+    max-width: 300px;
+    text-align: right;
+    line-height: 1.3;
+  }
+  .bingo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+    flex: 1;
+  }
+  .bingo-cell {
+    position: relative;
+    aspect-ratio: 1/1;
+    background: var(--cream);
+    border: 1px solid rgba(0,0,0,0.12);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .bingo-cell:hover { transform: scale(1.02); }
+  .bingo-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bingo-cell .cell-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(46,38,32,0.78);
+    color: var(--paper);
+    padding: 4px 5px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 7.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .bingo-cell.done::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(107,68,35,0.82);
+    pointer-events: none;
+  }
+  .bingo-cell.done::before {
+    content: "✓";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 60px;
+    color: var(--ochre);
+    z-index: 2;
+    font-style: italic;
+  }
+  .bingo-cell.reading {
+    outline: 3px solid var(--amber);
+    outline-offset: -1px;
+  }
+  .bingo-cell.shared-cell {
+    outline: 3px solid var(--brick);
+    outline-offset: -1px;
+  }
+  .bingo-cell.shared-cell.reading {
+    outline: 3px solid var(--brick);
+    box-shadow: inset 0 0 0 6px var(--amber);
+  }
+  .bingo-cell .shared-heart {
+    position: absolute;
+    top: 6px; left: 6px;
+    background: var(--brick);
+    color: var(--paper);
+    font-family: 'Instrument Serif', serif;
+    font-size: 13px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .bingo-cell .reading-flag {
+    position: absolute;
+    top: 5px; right: 5px;
+    background: var(--amber);
+    color: var(--ink);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 7px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 3px 6px;
+    border-radius: 100px;
+    z-index: 3;
+  }
+  .bingo-cell.freespace {
+    background: var(--sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    cursor: default;
+    color: var(--paper);
+  }
+  .bingo-cell.freespace:hover { transform: none; }
+  .bingo-cell.freespace .fs-inner {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.15;
+  }
+  .bingo-cell.freespace .fs-inner strong {
+    display: block;
+    font-style: normal;
+    font-size: 56px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 4px;
+    color: var(--ochre);
+  }
+  .bingo-cell.wildcard {
+    outline: 3px solid var(--sage);
+    outline-offset: -1px;
+  }
+  .bingo-cell .wildcard-flag {
+    position: absolute;
+    top: 5px; right: 5px;
+    background: var(--sage);
+    color: var(--paper);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 7px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 3px 6px;
+    border-radius: 100px;
+    z-index: 3;
+  }
+  .bingo-footer {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(46,38,32,0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+  .bingo-footer .progress {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .bingo-footer button {
+    background: transparent;
+    border: 1px solid var(--ink);
+    padding: 6px 12px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    border-radius: 100px;
+    color: var(--ink);
+  }
+  .bingo-footer button:hover { background: var(--ink); color: var(--paper); }
+  @media print {
+    .bingo-footer button { display: none; }
+    .bingo-cell { cursor: default; }
+  }
+
+  /* ============ BACK PAGE ============ */
+  .back {
+    background: var(--espresso);
+    color: var(--paper);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .back h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 88px;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+  .back h1 em { color: var(--ochre); }
+  .back-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 48px;
+    margin: 36px 0;
+  }
+  .back-stat .n {
+    font-family: 'Instrument Serif', serif;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .back-stat .l {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 6px;
+    color: #c4b896;
+  }
+  .back-stat .n em {
+    font-style: italic;
+    font-size: 44px;
+    color: var(--terracotta);
+  }
+  .back-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 40px;
+    margin-top: 24px;
+  }
+  .legend-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-top: 1px solid #4a3a2c;
+  }
+  .legend-row .swatch {
+    width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0;
+  }
+  .legend-row .txt h4 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 17px;
+    font-weight: 400;
+  }
+  .legend-row .txt p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #c4b896;
+    margin-top: 2px;
+  }
+  .back-sig {
+    text-align: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #4a3a2c;
+  }
+  .back-sig .big {
+    font-size: 56px;
+    display: block;
+    font-style: normal;
+    letter-spacing: -0.02em;
+    color: var(--ochre);
+    margin-top: 4px;
+  }
+  .back-sig .from {
+    display: block;
+    font-size: 16px;
+    color: var(--terracotta);
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Filter bar (screen only) -->
+<div class="filter-bar" id="filterBar">
+  <button class="active" data-filter="all">All 24</button>
+  <span class="sep"></span>
+  <button data-filter="fiction">Fiction</button>
+  <button data-filter="nonfiction">Nonfiction</button>
+  <span class="sep"></span>
+  <button data-filter="physical">Physical</button>
+  <button data-filter="audio">Audio</button>
+  <span class="sep"></span>
+  <button data-filter="shared">♥ Shared</button>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 1 — COVER -->
+<!-- ============================================================ -->
+<div class="page cover">
+  <div class="sun"></div>
+  <div class="cover-top">
+    <div class="masthead">The Reading Room · Vol. XXVI</div>
+    <div class="masthead">For Andres · with love, M.</div>
+  </div>
+
+  <div class="cover-title-wrap">
+    <div class="mono-label" style="color:var(--paper); margin-bottom: 20px; opacity: 0.95;">A Personal Reading Guide ⟶ Twelve Months · Twenty-Four Books</div>
+    <h1 class="cover-title display">A Year<br><em class="display-italic">of</em> Reading.</h1>
+  </div>
+
+  <img class="cover-hero" id="coverHero1" alt="">
+  <div class="cover-hero-2"><img id="coverHero2" alt=""></div>
+  <div class="cover-hero-3"><img id="coverHero3" alt=""></div>
+  <div class="cover-hero-4"><img id="coverHero4" alt=""></div>
+
+  <div class="circle-stamp">
+    <div>
+      <strong>24</strong>
+      books,<br>
+      <em style="font-size:12px;">hand-picked<br>for you</em>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <p class="lede">Twenty-four books, two each month — a rhythm of fiction and nonfiction, page and sound, chosen for the shape of a year. Four we'll read together.</p>
+    <div class="cover-issue">
+      Curated for<br>
+      <span class="big">Andres</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 — CONTENTS -->
+<!-- ============================================================ -->
+<div class="page contents">
+  <div class="contents-head">
+    <h1 class="display">Con<em class="display-italic">tents</em></h1>
+    <div class="mono-label">Twelve Months · Twenty-Four Titles</div>
+  </div>
+
+  <div class="contents-grid" id="tocGrid"></div>
+
+  <div class="dedication">
+    <span class="big-heart">♥</span>
+    <p>Months marked with a heart are books we're reading together &mdash; side by side, the way the best books are read.</p>
+  </div>
+
+  <div class="contents-footer">
+    <div class="stat"><span class="num display">24</span><span class="lbl">Books in total</span></div>
+    <div class="stat"><span class="num display-italic">7,166</span><span class="lbl">Pages to turn</span></div>
+    <div class="stat"><span class="num display">16/8</span><span class="lbl">Fiction / Nonfiction</span></div>
+    <div class="stat"><span class="num display-italic">4<span style="color:var(--brick)">♥</span></span><span class="lbl">Shared reads with M.</span></div>
+  </div>
+</div>
+
+<!-- Month pages injected here -->
+<div id="monthPages"></div>
+
+<!-- ============================================================ -->
+<!-- BINGO PAGE -->
+<!-- ============================================================ -->
+<div class="page bingo">
+  <div class="bingo-head">
+    <h1 class="display">Reader's <em>Bingo.</em></h1>
+    <p class="sub">A year of reading, at a glance. Click to mark off as you finish — your progress saves automatically. Hearts are our shared reads.</p>
+  </div>
+  <div class="bingo-grid" id="bingoGrid"></div>
+  <div class="bingo-footer">
+    <span>Click a cell to cycle: unread → reading → completed</span>
+    <span class="progress" id="bingoProgress">0 completed · <em>0 reading</em></span>
+    <button id="bingoReset">Reset Board</button>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- BACK PAGE -->
+<!-- ============================================================ -->
+<div class="page back">
+  <div>
+    <div class="mono-label" style="color:var(--terracotta); margin-bottom:16px;">End Matter</div>
+    <h1 class="display">The <em class="display-italic">numbers</em><br>of the year.</h1>
+  </div>
+
+  <div class="back-grid">
+    <div class="back-stat"><div class="n display">7,166</div><div class="l">Total pages</div></div>
+    <div class="back-stat"><div class="n display-italic">20</div><div class="l">Pages per day (avg)</div></div>
+    <div class="back-stat"><div class="n display">4.18<em>★</em></div><div class="l">Average rating</div></div>
+    <div class="back-stat"><div class="n display">16</div><div class="l">Works of fiction</div></div>
+    <div class="back-stat"><div class="n display-italic">8</div><div class="l">Works of nonfiction</div></div>
+    <div class="back-stat"><div class="n display">12/12</div><div class="l">Physical / audio split</div></div>
+  </div>
+
+  <div>
+    <div class="mono-label" style="color:var(--ochre); margin-bottom:12px;">A note on the seasons</div>
+    <div class="back-legend">
+      <div class="legend-row">
+        <div class="swatch" style="background:linear-gradient(135deg,var(--spring-1) 50%, var(--spring-2) 50%)"></div>
+        <div class="txt"><h4>Spring · Apr–May</h4><p>Peach & coral — quiet lyricism, new rhythms.</p></div>
+      </div>
+      <div class="legend-row">
+        <div class="swatch" style="background:linear-gradient(135deg,var(--summer-1) 33%, var(--summer-2) 33% 66%, var(--summer-3) 66%)"></div>
+        <div class="txt"><h4>Summer · Jun–Aug</h4><p>Orange, amber & gold — long days for epic, immersive reads.</p></div>
+      </div>
+      <div class="legend-row">
+        <div class="swatch" style="background:linear-gradient(135deg,var(--autumn-1) 33%, var(--autumn-2) 33% 66%, var(--autumn-3) 66%)"></div>
+        <div class="txt"><h4>Autumn · Sep–Nov</h4><p>Moss, olive & sienna — atmospheric, layered, introspective.</p></div>
+      </div>
+      <div class="legend-row">
+        <div class="swatch" style="background:linear-gradient(135deg,var(--winter-1) 25%, var(--winter-2) 25% 50%, var(--winter-3) 50% 75%, var(--winter-4) 75%)"></div>
+        <div class="txt"><h4>Winter · Dec–Mar</h4><p>Umber, teal, slate & espresso — big ideas for the long nights.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-sig">
+    See you on the<span class="big display-italic">other side.</span>
+    <span class="from">♥ Margaux</span>
+  </div>
+</div>
+
+<script src="andres-data.js"></script>
+<script src="andres-render.js"></script>
+<script>
+  // Cover hero images — four covers layered in a small stack
+  (function(){
+    const r = window.__resources || {};
+    const set = (id, slug, ext) => {
+      const el = document.getElementById(id);
+      if (el) el.src = r[slug] || `covers/${slug}.${ext}`;
+    };
+    set('coverHero1', 'lonesome-dove', 'jpg');
+    set('coverHero2', 'endurance', 'png');
+    set('coverHero3', 'all-colors-dark', 'jpg');
+    set('coverHero4', 'sun-compass', 'jpg');
+  })();
+</script>
+
+</body>
+</html>
