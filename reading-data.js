@@ -109,7 +109,7 @@ window.READING_DATA = [
       },
       {
         slug: "invisible-women", title: "Invisible Women", author: "Caroline Criado Perez",
-        pages: 448, rating: 4.20, genre: "nonfiction", format: "audio",
+        pages: 448, rating: 4.33, genre: "nonfiction", format: "audio",
         blurb: "How data bias built a world that ignores half the population — sharp, infuriating, and essential.",
         quote: "The book that makes you see every room, every policy, every product differently. Essential listening.",
         cite: "Editor's note · On being unseen"
