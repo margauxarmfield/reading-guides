@@ -83,7 +83,7 @@ window.READING_DATA = [
     books: [
       {
         slug: "tomorrow", title: "Tomorrow, and Tomorrow, and Tomorrow", author: "Gabrielle Zevin",
-        pages: 416, rating: 4.20, genre: "fiction", format: "physical",
+        pages: 416, rating: 4.11, genre: "fiction", format: "physical",
         blurb: "Creative ambition and relationships in a tech-centered world.",
         quote: "A friendship novel dressed as a video-game novel — surprisingly tender about the work of making things together.",
         cite: "Editor's note · On play"
