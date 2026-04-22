@@ -108,11 +108,11 @@ window.READING_DATA = [
         cite: "Editor's note · On remembering"
       },
       {
-        slug: "between-world-me", title: "Between the World and Me", author: "Ta-Nehisi Coates",
-        pages: 176, rating: 4.40, genre: "nonfiction", format: "audio",
-        blurb: "Short, powerful reflection on race and identity.",
-        quote: "Written as a letter, read aloud by the author. Brief, urgent, unforgettable on audio.",
-        cite: "Editor's note · On inheritance"
+        slug: "invisible-women", title: "Invisible Women", author: "Caroline Criado Perez",
+        pages: 448, rating: 4.20, genre: "nonfiction", format: "audio",
+        blurb: "How data bias built a world that ignores half the population — sharp, infuriating, and essential.",
+        quote: "The book that makes you see every room, every policy, every product differently. Essential listening.",
+        cite: "Editor's note · On being unseen"
       }
     ]
   },
