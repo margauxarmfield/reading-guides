@@ -116,28 +116,28 @@
   <nav class="tab-nav">
     <span class="wordmark">Reading Guides</span>
     <div class="tab-group">
-      <button class="tab-btn active" data-guide="andres">
-        <span class="dot"></span>Andres
-      </button>
-      <button class="tab-btn" data-guide="margaux">
+      <button class="tab-btn active" data-guide="margaux">
         <span class="dot"></span>Margaux
+      </button>
+      <button class="tab-btn" data-guide="andres">
+        <span class="dot"></span>Andres
       </button>
     </div>
   </nav>
 
   <div class="guide-area">
     <iframe
-      id="frame-andres"
+      id="frame-margaux"
       class="guide-frame active"
-      src="andres.html"
-      title="Andres's Reading Guide"
+      src="margaux.html"
+      title="Margaux's Reading Guide"
     ></iframe>
     <iframe
-      id="frame-margaux"
+      id="frame-andres"
       class="guide-frame"
       src=""
-      data-src="margaux.html"
-      title="Margaux's Reading Guide"
+      data-src="andres.html"
+      title="Andres's Reading Guide"
     ></iframe>
   </div>
 
@@ -169,7 +169,7 @@
 
     // Restore last-selected tab
     const saved = sessionStorage.getItem('active-guide');
-    if (saved && saved !== 'andres') {
+    if (saved && saved !== 'margaux') {
       document.querySelector(`[data-guide="${saved}"]`)?.click();
     }
   </script>
