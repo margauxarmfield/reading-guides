@@ -102,7 +102,7 @@ window.READING_DATA = [
     books: [
       {
         slug: "never-let-me-go", ext: "png", title: "Never Let Me Go", author: "Kazuo Ishiguro",
-        pages: 288, rating: 4.15, genre: "fiction", format: "physical",
+        pages: 288, rating: 3.85, genre: "fiction", format: "physical",
         blurb: "Quiet, philosophical, and emotionally devastating.",
         quote: "Reads like a memoir that gradually, horribly comes into focus. Plan a quiet afternoon for the ending.",
         cite: "Editor's note · On remembering"
