@@ -14,7 +14,7 @@ window.READING_DATA = [
       },
       {
         slug: "open-water", title: "Open Water", author: "Caleb Azumah Nelson",
-        pages: 160, rating: 4.10, genre: "fiction", format: "audio", shared: true,
+        pages: 160, rating: 3.98, genre: "fiction", format: "audio", shared: true,
         blurb: "Our shared read — short, lyrical, and emotional. Listen along with Andres.",
         quote: "A slim, headphones-on read. Move through it together after dark; it moves like a song you both already half-know.",
         cite: "Reading this one with Andres · On listening"
@@ -33,7 +33,7 @@ window.READING_DATA = [
       },
       {
         slug: "annihilation", title: "Annihilation", author: "Jeff VanderMeer",
-        pages: 208, rating: 4.00, genre: "fiction", format: "audio",
+        pages: 208, rating: 3.80, genre: "fiction", format: "audio",
         blurb: "Eerie ecological mystery that pairs well with nature-focused nonfiction.",
         quote: "Short, strange, and humming with dread. A nature book with teeth.",
         cite: "Editor's note · On Area X"
@@ -52,7 +52,7 @@ window.READING_DATA = [
       },
       {
         slug: "station-eleven", title: "Station Eleven", author: "Emily St. John Mandel",
-        pages: 336, rating: 4.10, genre: "fiction", format: "audio",
+        pages: 336, rating: 4.07, genre: "fiction", format: "audio",
         blurb: "A reflective dystopian novel about art, meaning, and connection.",
         quote: "The rare post-collapse novel that is actually about what survives. Let it play on a long drive.",
         cite: "Editor's note · On what endures"
@@ -121,7 +121,7 @@ window.READING_DATA = [
     books: [
       {
         slug: "wives-under-sea", title: "Our Wives Under the Sea", author: "Julia Armfield",
-        pages: 240, rating: 4.00, genre: "fiction", format: "physical", shared: true,
+        pages: 240, rating: 3.68, genre: "fiction", format: "physical", shared: true,
         blurb: "Our shared read — emotional, surreal, and deeply introspective. A love story told from the cold of the deep.",
         quote: "Grief, marriage, and something monstrous in the deep. A perfect October to move through side by side.",
         cite: "Reading this one with Andres · On the depths"
